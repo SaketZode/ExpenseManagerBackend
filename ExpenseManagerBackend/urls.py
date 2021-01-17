@@ -15,11 +15,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import TemplateView
 from Expenses import router as expensesrouter
+from Lendings import router as lendingsrouter
+from Borrowings import router as borrowingsrouter
+from Friendlist import router as friendlistrouter
+from rest_framework_swagger.views import get_swagger_view
+
+schema_view = get_swagger_view(title='SwaggerUI')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
-    path('expenses/', include(expensesrouter.urlpatterns))
+    path('expenses/', include(expensesrouter.urlpatterns)),
+    path('lendings/', include(lendingsrouter.urlpatterns)),
+    path('borrowings/', include(borrowingsrouter.urlpatterns)),
+    path('friendlist/', include(friendlistrouter.urlpatterns)),
+    path('swagger-ui/', TemplateView.as_view(
+            template_name='swagger-ui.html',
+            extra_context={'schema_url': 'openapi-schema'}
+        ), name='swagger-ui'),
 ]

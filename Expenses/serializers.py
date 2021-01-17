@@ -1,10 +1,8 @@
 from rest_framework import serializers
-from Expenses import models
+from Expenses.models import Expenses
 
 
 class ExpenseSerializer(serializers.ModelSerializer):
-    User = serializers.PrimaryKeyRelatedField(read_only=True)
-
     class Meta:
-        model = models.Expenses
-        fields = '__all__'
+        model = Expenses
+        fields = ('Particulars', 'Amount', 'Date', 'Status')

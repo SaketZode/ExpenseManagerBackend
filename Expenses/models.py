@@ -1,6 +1,5 @@
 from django.db import models
 from Users.models import Account
-# Create your models here.
 
 
 class Expenses(models.Model):
@@ -8,4 +7,5 @@ class Expenses(models.Model):
     Particulars = models.CharField(max_length=200)
     Amount = models.PositiveIntegerField()
     Date = models.DateField()
+    Status = models.BooleanField()
 
